@@ -34,14 +34,21 @@ export const basePortableTextComponents: PortableTextComponents = {
   },
 }
 
-const mergeSection = <T extends Record<string, unknown> | undefined>(
-  base: T | undefined,
-  override: T | undefined,
-) => ({ ...(base ?? {}), ...(override ?? {}) })
+const isPlainObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
 
-export const mergePortableTextComponents = (
-  overrides: PortableTextComponents,
-): PortableTextComponents => ({
+const mergeSection = <T,>(base: T | undefined, override: T | undefined): T | undefined => {
+  if (isPlainObject(base) || isPlainObject(override)) {
+    return {
+      ...(isPlainObject(base) ? base : {}),
+      ...(isPlainObject(override) ? override : {}),
+    } as T
+  }
+
+  return override ?? base
+}
+
+export const mergePortableTextComponents = (overrides: PortableTextComponents): PortableTextComponents => ({
   marks: mergeSection(basePortableTextComponents.marks, overrides.marks),
   list: mergeSection(basePortableTextComponents.list, overrides.list),
   listItem: mergeSection(basePortableTextComponents.listItem, overrides.listItem),
