@@ -1,1 +1,8 @@
-export { default } from 'next-sanity/studio/head'
+export default function StudioHead() {
+  return (
+    <>
+      <title>Studio – neuland.academy</title>
+      <meta name="robots" content="noindex" />
+    </>
+  )
+}
