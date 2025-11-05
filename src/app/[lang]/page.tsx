@@ -88,6 +88,15 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
 
   const { hero, offerSection, balanceSection, aboutSections, socialSection, contactSection, footer } = content
   const ctaHref = hero?.ctaHref ?? '#kontakt'
+  const hasOfferSection =
+    !!offerSection &&
+    Boolean(offerSection.heading || offerSection.intro || (offerSection.offers && offerSection.offers.length > 0))
+  const hasBalanceSection =
+    !!balanceSection &&
+    Boolean(balanceSection.intro || (balanceSection.cards && balanceSection.cards.length > 0))
+  const hasContactSection =
+    !!contactSection &&
+    Boolean(contactSection.heading || contactSection.text || contactSection.buttonLabel)
 
   return (
     <main className="min-h-screen font-sans bg-white text-gray-900">
@@ -145,7 +154,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
       </section>
 
       {/* Leistungen / Offerings */}
-      {(offerSection?.heading || offerSection?.intro || (offerSection?.offers?.length ?? 0) > 0) && (
+      {hasOfferSection && offerSection && (
         <section className="bg-white px-6 py-16 text-center md:py-20">
           {offerSection.heading && (
             <h2 className="mb-5 text-2xl font-bold md:mb-6 md:text-3xl">
@@ -175,7 +184,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
       )}
 
       {/* Balance */}
-      {(balanceSection?.intro || (balanceSection?.cards?.length ?? 0) > 0) && (
+      {hasBalanceSection && balanceSection && (
         <section className="relative bg-white px-6 py-18 md:px-12 md:py-24 lg:px-20">
           <div className="mx-auto max-w-5xl space-y-10 md:space-y-14">
             {balanceSection.intro && (
@@ -220,7 +229,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
 
       <SocialFeed copy={socialSection} />
 
-      {(contactSection?.heading || contactSection?.text || contactSection?.buttonLabel) && (
+      {hasContactSection && contactSection && (
         <section id="kontakt" className="px-6 py-24" style={{ backgroundColor: 'var(--accent-3-soft)' }}>
           <div className="mx-auto max-w-xl space-y-6 text-center">
             {contactSection.heading && (
