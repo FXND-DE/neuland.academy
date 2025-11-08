@@ -113,7 +113,7 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/20 to-white/0" />
-        <div className="relative z-10 flex w-full flex-col items-center justify-end gap-6 px-6 pb-20 pt-56 md:gap-4 md:pb-12 md:pt-48">
+        <div className="relative z-10 flex w-full flex-col items-center justify-end gap-6 px-6 pb-12 pt-44 sm:pt-56 md:gap-4 md:pb-12 md:pt-48">
           <div className="relative aspect-[3/1] w-60 drop-shadow-lg sm:w-80 md:w-[460px] lg:w-[580px] xl:w-[660px]">
             <Image src="/logo.png" alt="neuland.academy Logo" fill className="object-contain" priority />
           </div>
@@ -127,16 +127,16 @@ export default async function LandingPage({ params }: { params: Promise<{ lang?:
 
       {/* Hero Section */}
       <section
-        className="flex flex-col items-center justify-center px-6 py-28 text-center md:py-32"
+        className="flex flex-col items-center justify-center px-6 py-16 text-center sm:py-20 md:py-32"
         style={{ background: 'var(--accent-2-gradient)' }}
       >
         {hero?.subtitle && (
-          <h2 className="mx-auto mb-6 max-w-3xl text-3xl font-bold leading-snug md:text-5xl">
+          <h2 className="mx-auto mb-4 max-w-3xl text-3xl font-bold leading-snug md:mb-6 md:text-5xl">
             <PortableText value={hero.subtitle} components={heroSubtitleComponents} />
           </h2>
         )}
         {hero?.description && (
-          <p className="mx-auto mb-10 max-w-2xl">
+          <p className="mx-auto mb-8 max-w-2xl md:mb-10">
             <PortableText value={hero.description} components={heroDescriptionComponents} />
           </p>
         )}

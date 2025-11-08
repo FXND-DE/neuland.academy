@@ -76,14 +76,14 @@ export default function SocialFeed({ copy }: SocialFeedProps) {
           )}
         </div>
 
-        <div className="relative overflow-hidden rounded-3xl border border-black/5 shadow-lg">
+        <div className="relative overflow-hidden rounded-3xl border border-black/5 shadow-lg snap-feed-frame">
           <iframe
             ref={iframeRef}
             src={siteConfig.snapWidgetSrc}
             className="w-full"
             frameBorder="0"
             scrolling="no"
-            style={{ border: 'none', overflow: 'hidden', width: '100%', minHeight: '1080px', height: '60vh' }}
+            style={{ border: 'none', overflow: 'hidden', width: '100%' }}
             title="FaceBalance Instagram Feed"
           />
         </div>
